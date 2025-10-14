@@ -1,0 +1,10 @@
+# ToDoList CLI (MVC débutant)
+
+## Lancer
+```bash
+python main.py add "Réviser Python" --notes "chapitre 1"
+python main.py display
+python main.py start <ID>
+python main.py done <ID>
+python main.py delete <ID>
+python main.py clear
