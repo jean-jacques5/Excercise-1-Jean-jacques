@@ -1,10 +1,118 @@
-# ToDoList CLI (MVC débutant)
+📝 Copie tout ce bloc ci-dessous et colle-le dans ton fichier README.md :
+# 🗂️ ToDoList – CLI & Flask API (MVC - Python)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-3.0-black?logo=flask)
+![License](https://img.shields.io/badge/License-Academic-green)
 
-## Lancer
+---
+
+## 🎯 Objectif
+Ce projet met en œuvre une **ToDoList** développée en **Python** selon le modèle **MVC** (Modèle - Vue - Contrôleur).  
+Deux versions sont proposées :
+- Une **interface CLI** (ligne de commande)
+- Une **API REST** développée avec **Flask**
+
+L’objectif est de respecter les **bonnes pratiques de développement Python** :  
+programmation orientée objet, séparation claire des responsabilités, persistance en JSON et architecture modulaire.
+
+---
+
+## ⚙️ Installation
+
+### 1️⃣ Cloner le projet
 ```bash
-python main.py add "Réviser Python" --notes "chapitre 1"
+git clone https://github.com/jean-jacques5/Excercise-1-Jean-jacques.git
+cd Excercise-1-Jean-jacques
+
+2️⃣ Créer et activer un environnement virtuel
+python -m venv venv
+# Windows PowerShell :
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\venv\Scripts\Activate.ps1
+# macOS / Linux :
+# source venv/bin/activate
+
+3️⃣ Installer les dépendances
+pip install -r requirements.txt
+
+🚀 Utilisation
+🧩 Mode CLI
+python main.py add "Faire les courses" --notes "lait, œufs"
 python main.py display
 python main.py start <ID>
 python main.py done <ID>
 python main.py delete <ID>
 python main.py clear
+
+
+🗂️ Les tâches sont enregistrées localement dans :
+
+data/tasks.json
+
+🌐 Mode API Flask
+python api.py
+
+
+➡️ L’API tourne sur http://127.0.0.1:5000
+
+🔗 Endpoints de l’API
+Méthode	Route	Corps JSON	Description
+GET	/health	—	Vérifie que l’API fonctionne
+GET	/tasks	—	Liste toutes les tâches
+POST	/tasks	{ "title": "Faire les courses", "notes": "lait, œufs" }	Crée une nouvelle tâche
+PATCH	/tasks/<id>	{ "title": "...", "status": "done" }	Met à jour une tâche
+DELETE	/tasks/<id>	—	Supprime une tâche
+DELETE	/tasks	—	Vide toutes les tâches
+POST	/tasks/<id>/start	—	Passe la tâche en “in_progress”
+POST	/tasks/<id>/done	—	Passe la tâche en “done”
+🧱 Architecture MVC
+Excercise-1-Jean-jacques/
+├─ model/              → Données et logique métier (classe Task)
+│  └─ task.py
+├─ controllers/        → Gestion de la logique et persistance JSON
+│  └─ task_controller.py
+├─ views/              → Interface CLI
+│  └─ cli.py
+├─ data/               → Données persistantes
+│  └─ tasks.json
+├─ api.py              → Serveur Flask (API REST)
+├─ main.py             → Entrée CLI
+├─ .gitignore
+├─ requirements.txt
+└─ README.md
+
+🧩 Technologies utilisées
+
+Python 3.10+
+
+Flask
+
+Argparse
+
+JSON (persistance locale)
+
+POO / MVC
+
+
+🧪 Exemples de requêtes API (curl)
+# Vérifier le serveur
+curl http://127.0.0.1:5000/health
+
+# Ajouter une tâche
+curl -X POST http://127.0.0.1:5000/tasks -H "Content-Type: application/json" -d "{\"title\":\"Réviser Python\",\"notes\":\"Chapitre 1\"}"
+
+# Lister les tâches
+curl http://127.0.0.1:5000/tasks
+
+# Terminer une tâche
+curl -X POST http://127.0.0.1:5000/tasks/<ID>/done
+
+# Supprimer une tâche
+curl -X DELETE http://127.0.0.1:5000/tasks/<ID>
+
+👨‍💻 Auteur
+
+Obre Jolissaint Jean-Jacques
+🎓 Étudiant en Développement Web – Efrei Paris
+📆 Année : 2025
+💼 Matière : Conception & Développement Back-end
